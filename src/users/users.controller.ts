@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { Roles } from '../decorators/role-auth.decorator'
 import { UsersService } from './users.service'
 import { CreateUserDto } from './dto/create-user.dto'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { User } from './users.model'
+import { RolesGuard } from '../guards/roles.guard'
 
 @ApiTags('Users')
 @Controller('users')
@@ -21,6 +23,8 @@ export class UsersController {
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, type: [User] })
   @Get()
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
   getAllUser() {
     return this.usersService.getAllUsers()
   }
@@ -31,5 +35,4 @@ export class UsersController {
   getUserById(@Param('id') id: number) {
     return this.usersService.getUserById(id)
   }
-
 }

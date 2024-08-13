@@ -3,7 +3,7 @@ export enum Role {
   USER = 'user',
 }
 
-export interface UserCreationAttrs {
+export interface UserCreationAttributes {
   email: string;
   password: string;
 }

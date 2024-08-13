@@ -7,28 +7,36 @@ import { User } from './users/users.model'
 import { RolesModule } from './roles/roles.module'
 import { Role } from './roles/roles.model'
 import { UserRoles } from './roles/user-roles.model'
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module'
+import { ProductsModule } from './products/products.module'
+import { StoresModule } from './stores/stores.module'
+import { Product } from './products/products.model'
+import { Store } from './stores/stores.model'
+import { ProductStore } from './stores/product-stores.model'
 
 @Module({
   imports: [
+    ConfigModule.forRoot(
+      { envFilePath: `.${process.env.NODE_ENV}.env` },
+    ),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: process.env.DATABASE_HOST,
       port: Number(process.env.DATABASE_PORT),
-      username: 'root', // process.env.DATABASE_USERNAME,
-      password: '86818682', // process.env.DATABASE_PASSWORD,
-      database: 'ermel_db', //process.env.DATABASE_NAME,
-      models: [User, Role, UserRoles],
-      autoLoadModels: true
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
+      models: [User, Role, UserRoles, Product, Store, ProductStore],
+      autoLoadModels: true,
     }),
     UsersModule,
-    ConfigModule.forRoot(
-      { envFilePath: `.${process.env.NODE_ENV}.env` }
-    ),
     RolesModule,
-    AuthModule],
+    AuthModule,
+    ProductsModule,
+    StoresModule,
+  ],
   controllers: [],
-  providers: []
+  providers: [],
 })
 export class AppModule {
 }

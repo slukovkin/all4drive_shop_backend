@@ -9,7 +9,7 @@ export class UsersService {
 
   constructor(
     @InjectModel(User) private userRepository: typeof User,
-    private readonly roleService: RolesService
+    private readonly roleService: RolesService,
   ) {
   }
 
@@ -17,6 +17,7 @@ export class UsersService {
     const user = await this.userRepository.create(dto)
     const role = await this.roleService.getRoleByValue('USER')
     await user.$set('roles', [role.id])
+    user.roles = [role]
     return user
   }
 
