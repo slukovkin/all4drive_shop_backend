@@ -6,6 +6,7 @@ export interface ProductCreationAttributes {
 }
 
 export interface ProductUpdateAttributes {
+  readonly code: number
   readonly article: string
   readonly title: string
 }

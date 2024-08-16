@@ -13,11 +13,9 @@ export class ProductsService {
 
   async create(productDto: CreateProductDto) {
     const candidate = await this.getProductByCode(productDto.code)
-    if (!candidate) {
-      const crossCode = Number(productDto.code.toString().slice(0, 5))
-      return await this.productRepository.create({ ...productDto, cross: crossCode })
-    }
-    throw new HttpException('Товар уже есть в БД', HttpStatus.CONFLICT)
+    if (candidate) throw new HttpException('Товар уже есть в БД', HttpStatus.CONFLICT)
+    const crossCode = Number(productDto.code.toString().slice(0, 5))
+    return await this.productRepository.create({ ...productDto, cross: crossCode })
   }
 
   async getAllProduct() {
@@ -33,10 +31,11 @@ export class ProductsService {
   }
 
   async updateProductById(id: number, product: ProductUpdateAttributes) {
-    // return await this.productRepository.update()
+    return await this.productRepository.update<Product>(product, { where: { id } })
+    // return 'Update' + id
   }
 
   async deleteProductById(id: number) {
-    return await this.productRepository.destroy({ where: { id } })
+    return await this.productRepository.destroy({ where: { id: id } })
   }
 }
