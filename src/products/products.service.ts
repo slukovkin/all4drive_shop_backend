@@ -22,9 +22,9 @@ export class ProductsService {
     return await this.productRepository.findAll()
   }
 
-  // async getProductById(id: number) {
-  //   return await this.productRepository.findOne({ where: { id } })
-  // }
+  async getProductById(id: number) {
+    return await this.productRepository.findOne({ where: { id } })
+  }
 
   async getProductByCode(code: number) {
     return await this.productRepository.findOne({ where: { code } })

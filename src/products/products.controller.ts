@@ -20,10 +20,10 @@ export class ProductsController {
     return this.productsService.getAllProduct()
   }
 
-  // @Get('/search/:id')
-  // getProductById(@Param('id') id: number) {
-  //   return this.productsService.getProductById(id)
-  // }
+  @Get('/:id')
+  getProductById(@Param('id') id: number) {
+    return this.productsService.getProductById(id)
+  }
 
   @Get('/search/:code')
   getProductByCode(@Param('code') code: number) {

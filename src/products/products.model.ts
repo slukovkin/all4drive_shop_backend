@@ -20,6 +20,15 @@ export class Product extends Model<Product, ProductCreationAttributes> {
   title: string
 
   @Column({ type: DataType.STRING, allowNull: true })
+  brand: string
+
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  price: number
+
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  qty: number
+
+  @Column({ type: DataType.STRING, allowNull: true })
   imageUrl: string
 
   @Column({ type: DataType.INTEGER })
