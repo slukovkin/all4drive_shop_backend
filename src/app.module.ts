@@ -12,7 +12,8 @@ import { ProductsModule } from './products/products.module'
 import { StoresModule } from './stores/stores.module'
 import { Product } from './products/products.model'
 import { Store } from './stores/stores.model'
-import { ProductStore } from './stores/product-stores.model'
+import { ProductStore } from './product-in-store/product-stores.model'
+import { ProductInStoreModule } from './product-in-store/product-in-store.module'
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ProductStore } from './stores/product-stores.model'
     AuthModule,
     ProductsModule,
     StoresModule,
+    ProductInStoreModule,
   ],
   controllers: [],
   providers: [],

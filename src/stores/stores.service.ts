@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { Store } from './stores.model'
-import { StoreCreationAttributes } from './types/types'
+import { IStoreCreationAttributes } from './types/types'
 
 @Injectable()
 export class StoresService {
@@ -9,7 +9,7 @@ export class StoresService {
     @InjectModel(Store) private readonly storeRepository: typeof Store) {
   }
 
-  async create(store: StoreCreationAttributes) {
+  async create(store: IStoreCreationAttributes) {
     const isStore = await this.getStoreByTitle(store.title)
     if (isStore) throw new HttpException('Магазин уже есть в БД', HttpStatus.CONFLICT)
     return this.storeRepository.create(store)

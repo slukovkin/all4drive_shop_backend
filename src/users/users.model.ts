@@ -1,11 +1,11 @@
 import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript'
 import { ApiProperty } from '@nestjs/swagger'
-import { UserCreationAttributes } from './types/types'
+import { IUserCreationAttributes } from './types/types'
 import { Role } from '../roles/roles.model'
 import { UserRoles } from '../roles/user-roles.model'
 
 @Table({ tableName: 'users' })
-export class User extends Model<User, UserCreationAttributes> {
+export class User extends Model<User, IUserCreationAttributes> {
 
   @ApiProperty({ example: 'id', description: 'id of user' })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })

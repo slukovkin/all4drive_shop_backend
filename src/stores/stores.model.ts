@@ -1,12 +1,12 @@
 import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript'
-import { StoreCreationAttributes } from './types/types'
+import { IStoreCreationAttributes } from './types/types'
 import { DataTypes } from 'sequelize'
-import { ProductStore } from './product-stores.model'
+import { ProductStore } from '../product-in-store/product-stores.model'
 import { Product } from '../products/products.model'
 
 
 @Table({ tableName: 'stores' })
-export class Store extends Model<Store, StoreCreationAttributes> {
+export class Store extends Model<Store, IStoreCreationAttributes> {
 
   @Column({ type: DataTypes.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number

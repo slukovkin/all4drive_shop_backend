@@ -4,7 +4,7 @@ import { ProductsService } from './products.service'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { Product } from './products.model'
 import { Store } from '../stores/stores.model'
-import { ProductStore } from '../stores/product-stores.model'
+import { ProductStore } from '../product-in-store/product-stores.model'
 
 @Module({
   controllers: [ProductsController],

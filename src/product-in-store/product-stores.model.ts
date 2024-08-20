@@ -1,6 +1,6 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import { Product } from '../products/products.model'
-import { Store } from './stores.model'
+import { Store } from '../stores/stores.model'
 
 @Table({ tableName: 'product_stores' })
 export class ProductStore extends Model<ProductStore> {

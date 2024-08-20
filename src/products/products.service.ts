@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { CreateProductDto } from './dto/create-product.dto'
-import { ProductUpdateAttributes } from './types/types'
+import { IProductUpdateAttributes } from './types/types'
 import { InjectModel } from '@nestjs/sequelize'
 import { Product } from './products.model'
 
@@ -30,7 +30,7 @@ export class ProductsService {
     return await this.productRepository.findOne({ where: { code } })
   }
 
-  async updateProductById(id: number, product: ProductUpdateAttributes) {
+  async updateProductById(id: number, product: IProductUpdateAttributes) {
     return await this.productRepository.update<Product>(product, { where: { id } })
   }
 
