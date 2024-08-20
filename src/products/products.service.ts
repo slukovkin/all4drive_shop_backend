@@ -32,7 +32,6 @@ export class ProductsService {
 
   async updateProductById(id: number, product: ProductUpdateAttributes) {
     return await this.productRepository.update<Product>(product, { where: { id } })
-    // return 'Update' + id
   }
 
   async deleteProductById(id: number) {
