@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { ProductStore } from './product-stores.model'
 import { InjectModel } from '@nestjs/sequelize'
 import { IProductStoreDto } from './dto/productStore.dto'
@@ -11,16 +11,42 @@ export class ProductInStoreService {
   }
 
   async addProductInStore(productStoreDto: IProductStoreDto) {
-    return await this.productStoreRepository.create(productStoreDto)
+    // Если товара нет на складе, добавляем на склад
+    const isStock = await this.getProductInStoreById(productStoreDto.productId)
+    if (!isStock) return await this.productStoreRepository.create(productStoreDto)
+
+    // Если товар существует на складе и приходит положительное количество, складываем и обновляем в БД
+    if (isStock && productStoreDto.qty > 0) {
+      const newQty = isStock.qty + productStoreDto.qty
+      return await this.productStoreRepository.update({ ...productStoreDto, qty: newQty },
+        { where: { id: isStock.id } })
+    }
+
+    // Если товар существует проверяем, что существует товара больше или равно тому, что приходит в запросе.
+    // Если приходит отрицательное количество, вычитаем и обновляем в БД
+    if (isStock && isStock.qty >= Math.abs(productStoreDto.qty)) {
+      const newQty = isStock.qty - Math.abs(productStoreDto.qty)
+      return await this.productStoreRepository.update({ ...productStoreDto, qty: newQty },
+        { where: { id: isStock.id } })
+    } else {
+      // Если товара меньше на складе, выдаём сообщение о нехватке
+      throw new HttpException('Недостаточно товара на складе', HttpStatus.FORBIDDEN)
+    }
   }
 
-  async getAllProductFromStore(storeId: number) {
+  async getAllProductFromStore(storeId: number = 1) {
     return await this.productStoreRepository.findAll()
   }
 
-  getProductInStoreById(storeId: number, productId: number) {
+  async getProductInStoreById(productId: number) {
+    return await this.productStoreRepository.findOne({ where: { productId: productId } })
   }
 
-  removeProductFromStore(productId: number, storeId: number) {
+  // async updateQtyInStore(qty: number) {
+  //   return this.productStoreRepository.update()
+  // }
+
+  async removeProductFromStore(productId: number) {
+    return await this.productStoreRepository.destroy({ where: { productId } })
   }
 }

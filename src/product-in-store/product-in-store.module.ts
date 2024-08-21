@@ -10,7 +10,6 @@ import { ProductStore } from './product-stores.model'
   imports: [SequelizeModule.forFeature([Store, Product, ProductStore])],
   controllers: [ProductInStoreController],
   providers: [ProductInStoreService],
-  exports: [ProductInStoreService],
 })
 export class ProductInStoreModule {
 }
