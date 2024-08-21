@@ -18,7 +18,7 @@ export class ProductInStoreController {
   // @Roles('ADMIN')
   // @UseGuards(RolesGuard)
   addProductInStore(@Body() product: IProductStoreDto) {
-    return this.productInStoreService.addProductInStore(product)
+    return this.productInStoreService.changeQuantityProductsInStore(product)
   }
 
 

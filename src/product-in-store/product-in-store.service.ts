@@ -10,7 +10,7 @@ export class ProductInStoreService {
   ) {
   }
 
-  async addProductInStore(productStoreDto: IProductStoreDto) {
+  async changeQuantityProductsInStore(productStoreDto: IProductStoreDto) {
     // Если товара нет на складе, добавляем на склад
     const isStock = await this.getProductInStoreById(productStoreDto.productId)
     if (!isStock) return await this.productStoreRepository.create(productStoreDto)
@@ -24,8 +24,8 @@ export class ProductInStoreService {
 
     // Если товар существует проверяем, что существует товара больше или равно тому, что приходит в запросе.
     // Если приходит отрицательное количество, вычитаем и обновляем в БД
-    if (isStock && isStock.qty >= Math.abs(productStoreDto.qty)) {
-      const newQty = isStock.qty - Math.abs(productStoreDto.qty)
+    if (isStock && isStock.qty >= (productStoreDto.qty / -1)) {
+      const newQty = isStock.qty - (productStoreDto.qty / -1)
       return await this.productStoreRepository.update({ ...productStoreDto, qty: newQty },
         { where: { id: isStock.id } })
     } else {
