@@ -21,11 +21,6 @@ export class ProductInStoreController {
     return this.productInStoreService.addProductInStore(product)
   }
 
-  //
-  // @Post('/dec')
-  // decrementProductInStore(@Body() product: IProductStoreDto) {
-  //   return this.productInStoreService.decrementProductInStore(product)
-  // }
 
   @ApiOperation({ summary: 'Получение всех товаров в магазине' })
   @ApiResponse({ status: 200, type: [ProductStore] })

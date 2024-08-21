@@ -35,7 +35,7 @@ export class ProductInStoreService {
   }
 
   async getAllProductFromStore(storeId: number = 1) {
-    return await this.productStoreRepository.findAll()
+    return await this.productStoreRepository.findAll({ where: { storeId } })
   }
 
   async getProductInStoreById(productId: number) {
