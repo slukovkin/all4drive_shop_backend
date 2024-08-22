@@ -14,6 +14,8 @@ import { Product } from './products/products.model'
 import { Store } from './stores/stores.model'
 import { ProductStore } from './product-in-store/product-stores.model'
 import { ProductInStoreModule } from './product-in-store/product-in-store.module'
+import { CustomerModule } from './customer/customer.module'
+import { Customer } from './customer/customer.model'
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { ProductInStoreModule } from './product-in-store/product-in-store.module
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      models: [User, Role, UserRoles, Product, Store, ProductStore],
+      models: [User, Role, UserRoles, Product, Store, ProductStore, Customer],
       autoLoadModels: true,
     }),
     UsersModule,
@@ -36,6 +38,7 @@ import { ProductInStoreModule } from './product-in-store/product-in-store.module
     ProductsModule,
     StoresModule,
     ProductInStoreModule,
+    CustomerModule,
   ],
   controllers: [],
   providers: [],
