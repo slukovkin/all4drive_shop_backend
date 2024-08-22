@@ -3,4 +3,5 @@ export class CustomerCreationDto {
   surname: string
   email: string
   phone: string
+  description: string
 }

@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { Customer } from './customer.model'
-import { ICustomerCreationAttrs } from './types'
+import { ICustomerCreationAttrs, ICustomerUpdateAttrs } from './types'
 
 
 @Injectable()
@@ -11,11 +11,10 @@ export class CustomerService {
   ) {
   }
 
-
   async createCustomer(customerDto: ICustomerCreationAttrs) {
     const candidate = await this.getCustomerByEmail(customerDto.email)
     if (candidate) throw new HttpException('Клиент уже есть в БД', HttpStatus.CONFLICT)
-    return await this.customerRepository.create()
+    return await this.customerRepository.create(customerDto)
   }
 
   async getAllCustomers() {
@@ -26,7 +25,7 @@ export class CustomerService {
     return await this.customerRepository.findOne({ where: { email } })
   }
 
-  async updateCustomerById(id: number, customer: ICustomerCreationAttrs) {
+  async updateCustomerById(id: number, customer: ICustomerUpdateAttrs) {
     return await this.customerRepository.update<Customer>(customer, { where: { id } })
   }
 

@@ -11,7 +11,7 @@ export class Customer extends Model<Customer, ICustomerCreationAttrs> {
   id: number
 
   @ApiProperty({ example: 'Иван', description: 'Имя клиент' })
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({ type: DataType.STRING, allowNull: true })
   name: string
 
   @ApiProperty({ example: 'Иванов', description: 'Фамилия клиента' })
@@ -19,11 +19,11 @@ export class Customer extends Model<Customer, ICustomerCreationAttrs> {
   surname: string
 
   @ApiProperty({ example: 'user@gmail.com', description: 'Email клиента' })
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+  @Column({ type: DataType.STRING, unique: true, allowNull: true })
   email: string
 
   @ApiProperty({ example: '0671111111', description: 'Телефон клиента' })
-  @Column({ type: DataType.STRING, unique: true, allowNull: false })
+  @Column({ type: DataType.STRING, unique: true, allowNull: true })
   phone: string
 
   @ApiProperty({ example: 'Отличный клиент', description: 'Описание клиента' })

@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { CustomerService } from './customer.service'
-import { ICustomerCreationAttrs } from './types'
+import { ICustomerUpdateAttrs } from './types'
 import { CustomerCreationDto } from './dto/create-customer'
 
 
 @ApiTags('Клиент')
-@Controller('customer')
+@Controller('customers')
 export class CustomerController {
 
   constructor(
@@ -30,7 +30,7 @@ export class CustomerController {
   }
 
   @Patch('/:id')
-  updateProductById(@Param('id') id: number, @Body() customer: ICustomerCreationAttrs) {
+  updateProductById(@Param('id') id: number, @Body() customer: ICustomerUpdateAttrs) {
     return this.customerService.updateCustomerById(id, customer)
   }
 
