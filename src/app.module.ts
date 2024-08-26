@@ -16,6 +16,7 @@ import { ProductStore } from './product-in-store/product-stores.model'
 import { ProductInStoreModule } from './product-in-store/product-in-store.module'
 import { CustomerModule } from './customer/customer.module'
 import { Customer } from './customer/customer.model'
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { Customer } from './customer/customer.model'
     StoresModule,
     ProductInStoreModule,
     CustomerModule,
+    UploadModule,
   ],
   controllers: [],
   providers: [],
