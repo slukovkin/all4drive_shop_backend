@@ -16,7 +16,9 @@ import { ProductStore } from './product-in-store/product-stores.model'
 import { ProductInStoreModule } from './product-in-store/product-in-store.module'
 import { CustomerModule } from './customer/customer.module'
 import { Customer } from './customer/customer.model'
-import { UploadModule } from './upload/upload.module';
+import { FilesModule } from './files/files.module'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import * as path from 'node:path'
 
 @Module({
   imports: [
@@ -33,6 +35,9 @@ import { UploadModule } from './upload/upload.module';
       models: [User, Role, UserRoles, Product, Store, ProductStore, Customer],
       autoLoadModels: true,
     }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, 'storage'),
+    }),
     UsersModule,
     RolesModule,
     AuthModule,
@@ -40,7 +45,7 @@ import { UploadModule } from './upload/upload.module';
     StoresModule,
     ProductInStoreModule,
     CustomerModule,
-    UploadModule,
+    FilesModule,
   ],
   controllers: [],
   providers: [],

@@ -1,15 +1,15 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/sequelize'
 import { CreateProductDto } from './dto/create-product.dto'
 import { IProductUpdateAttributes } from './types/types'
-import { InjectModel } from '@nestjs/sequelize'
 import { Product } from './products.model'
 
 @Injectable()
 export class ProductsService {
 
-  constructor(@InjectModel(Product) private productRepository: typeof Product) {
+  constructor(
+    @InjectModel(Product) private productRepository: typeof Product) {
   }
-
 
   async create(productDto: CreateProductDto) {
     const candidate = await this.getProductByCode(productDto.code)
@@ -35,6 +35,7 @@ export class ProductsService {
   }
 
   async deleteProductById(id: number) {
+    // const product = await this.getProductById(id)
     return await this.productRepository.destroy({ where: { id: id } })
   }
 }
