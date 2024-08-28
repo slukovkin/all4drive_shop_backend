@@ -38,6 +38,7 @@ export class ProductsService {
 
   async deleteProductById(id: number) {
     const product = await this.getProductById(id)
+    // TODO #2:Переделать удаление изображения товара при удалении товара из БД
     const directory = path.resolve(__dirname, '../..', 'storage')
     const filename = product.imageUrl.split('/')[3]
     fs.unlink(`${directory}/${filename}`, (err) => {

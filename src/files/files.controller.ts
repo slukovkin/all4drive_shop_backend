@@ -29,6 +29,8 @@ export class FilesController {
       },
     }),
   }))
+
+  // TODO #1: Переделать сохраниение ссылки на изображение товара (отвязать от пути и порта)
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     // @ts-ignore
     return JSON.stringify(`${process.env.HOST}${process.env.PORT}/${file.filename}`)
