@@ -18,7 +18,9 @@ import { CustomerModule } from './customer/customer.module'
 import { Customer } from './customer/customer.model'
 import { FilesModule } from './files/files.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
+import { SettingsModule } from './settings/settings.module'
 import * as path from 'node:path'
+import { Settings } from './settings/settings.model'
 
 @Module({
   imports: [
@@ -32,7 +34,7 @@ import * as path from 'node:path'
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      models: [User, Role, UserRoles, Product, Store, ProductStore, Customer],
+      models: [User, Role, UserRoles, Product, Store, ProductStore, Customer, Settings],
       autoLoadModels: true,
     }),
     ServeStaticModule.forRoot({
@@ -46,6 +48,7 @@ import * as path from 'node:path'
     ProductInStoreModule,
     CustomerModule,
     FilesModule,
+    SettingsModule,
   ],
   controllers: [],
   providers: [],
