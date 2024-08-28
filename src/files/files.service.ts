@@ -13,6 +13,7 @@ export class FilesService {
   }
 
   async deleteFileFromStorage(fileName: string) {
+    
     console.log(fileName)
   }
 }

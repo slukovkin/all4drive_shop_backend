@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/sequelize'
 import { CreateProductDto } from './dto/create-product.dto'
 import { IProductUpdateAttributes } from './types/types'
 import { Product } from './products.model'
+import * as fs from 'node:fs'
+import * as path from 'node:path'
 
 @Injectable()
 export class ProductsService {
@@ -35,7 +37,12 @@ export class ProductsService {
   }
 
   async deleteProductById(id: number) {
-    // const product = await this.getProductById(id)
+    const product = await this.getProductById(id)
+    const directory = path.resolve(__dirname, '../..', 'storage')
+    const filename = product.imageUrl.split('/')[3]
+    fs.unlink(`${directory}/${filename}`, (err) => {
+      console.log(err)
+    })
     return await this.productRepository.destroy({ where: { id: id } })
   }
 }
