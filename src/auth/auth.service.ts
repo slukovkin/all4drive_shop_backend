@@ -43,4 +43,10 @@ export class AuthService {
     }
     throw new UnauthorizedException({ message: 'Некорректный email или пароль' })
   }
+
+  async checkRole(token: string) {
+    return token
+    // const response = await this.jwtService.verify(token)
+    // console.log(response)
+  }
 }

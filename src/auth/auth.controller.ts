@@ -18,4 +18,9 @@ export class AuthController {
   registration(@Body() userDto: CreateUserDto) {
     return this.authService.registration(userDto)
   }
+
+  @Post('/role')
+  checkRole(@Body() token: string) {
+    return this.authService.checkRole(token)
+  }
 }
