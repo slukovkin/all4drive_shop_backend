@@ -16,12 +16,12 @@ export class CurrencyService {
     return this.currencyRepository.findOne({ where: { id } })
   }
 
-  private async getCurrencyByCode(code: string) {
-    return this.currencyRepository.findOne({ where: { code } })
+  async getCurrencyByCode(code: string) {
+    return await this.currencyRepository.findOne({ where: { code } })
   }
 
   async create(currency: CurrencyDto) {
-    const isCurrency = this.getCurrencyByCode(currency.code)
+    const isCurrency = await this.getCurrencyByCode(currency.code)
     if (isCurrency) throw new HttpException('Валюта с данным кодом уже есть в БД', HttpStatus.CONFLICT)
     return await this.currencyRepository.create(currency)
   }

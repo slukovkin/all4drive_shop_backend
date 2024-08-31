@@ -13,6 +13,7 @@ export class Currency extends Model<Currency, ICurrencyCreationAttributes> {
   @Column({ type: DataType.STRING, allowNull: false })
   name: string // наименование валюты
 
-  @Column({ type: DataType.INTEGER, allowNull: false })
+  @Column({ type: DataType.FLOAT, allowNull: false })
   rate: number // курс валюты
 }
+
