@@ -16,10 +16,21 @@ export class Settings extends Model<Settings, ISettingCreationAttributes> {
   @Column({ type: DataType.INTEGER })
   storeId: number // id склада по умолчанию
 
+  @Column({ type: DataType.DOUBLE, allowNull: true })
+  priceTypeOne: number // тип отпусных цен 1
+
+  @Column({ type: DataType.DOUBLE, allowNull: true })
+  priceTypeTwo: number // тип отпусных цен 2
+
+  @Column({ type: DataType.DOUBLE, allowNull: true })
+  priceTypeThree: number // тип отпусных цен 3
+
+  @Column({ type: DataType.DOUBLE, allowNull: true })
+  markup: number // наценка по умолчанию
+
   @Column({ type: DataType.INTEGER })
   employeeId: number // id сотрудника по умолчанию
 
-  @Column({ type: DataType.INTEGER })
+  @Column({ type: DataType.STRING })
   telegramKey: string
-
 }

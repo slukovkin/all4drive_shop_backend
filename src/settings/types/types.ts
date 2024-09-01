@@ -3,7 +3,11 @@ export interface ISettingCreationAttributes {
   firmName: string, // название фирмы
   currencyId: number, // id валюты учета
   storeId: number, // id склада по умолчанию
-  employeeId?: number, // id сотрудника по умолчанию
+  priceTypeOne?: number | null,
+  priceTypeTwo?: number | null,
+  priceTypeThree?: number | null,
+  markup?: number | null,
+  employeeId?: number | null, // id сотрудника по умолчанию
   telegramKey?: string, // ключ телеграм-бота
 }
 
@@ -12,6 +16,10 @@ export interface ISettings {
   firmName: string,
   currencyId: number,
   storeId: number,
-  employeeId?: number,
-  telegramKey?: string,
+  priceTypeOne: number | null,
+  priceTypeTwo: number | null,
+  priceTypeThree: number | null,
+  markup: number | null,
+  employeeId?: number | null,
+  telegramKey?: number | null,
 }

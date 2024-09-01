@@ -1,8 +1,11 @@
 export interface StoreDto {
-  id: number,
   firmName: string, // название фирмы
   currencyId: number, // id валюты учета
   storeId: number, // id склада по умолчанию
-  employeeId: number, // id сотрудника по умолчанию
+  priceTypeOne: number | null,
+  priceTypeTwo: number | null,
+  priceTypeThree: number | null,
+  markup: number | null,
+  employeeId: number | null, // id сотрудника по умолчанию
   telegramKey: string, // ключ телеграм-бота
 }
