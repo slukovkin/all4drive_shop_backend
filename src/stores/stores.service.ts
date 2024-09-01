@@ -19,6 +19,10 @@ export class StoresService {
     return await this.storeRepository.findAll()
   }
 
+  async getStoreById(id: number) {
+    return await this.storeRepository.findOne({ where: { id } })
+  }
+
   async getStoreByTitle(title: string) {
     return await this.storeRepository.findOne({ where: { title } })
   }

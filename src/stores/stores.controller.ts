@@ -23,6 +23,11 @@ export class StoresController {
     return this.storeService.getStoreByTitle(title)
   }
 
+  @Get('/search/:id')
+  getStoreById(@Param('id') id: number) {
+    return this.storeService.getStoreById(id)
+  }
+
   @Patch('/:id')
   updateStoreById(@Param('id') id: string, @Body() store: Store) {
     return this.storeService.updateStoreById(+id, store)
