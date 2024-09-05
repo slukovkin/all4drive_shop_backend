@@ -21,6 +21,6 @@ export class ProductStore extends Model<ProductStore> {
   storeId: number
 
   @ApiProperty({ example: '10', description: 'Количество товара' })
-  @Column({ type: DataType.INTEGER, allowNull: true })
+  @Column({ type: DataType.DOUBLE, allowNull: true })
   qty: number
 }

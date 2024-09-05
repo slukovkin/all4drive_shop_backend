@@ -22,10 +22,10 @@ export class Product extends Model<Product, IProductCreationAttributes> {
   @Column({ type: DataType.STRING, allowNull: true })
   brand: string
 
-  @Column({ type: DataType.INTEGER, allowNull: false })
+  @Column({ type: DataType.DOUBLE, allowNull: false })
   price: number
 
-  @Column({ type: DataType.INTEGER, allowNull: false })
+  @Column({ type: DataType.DOUBLE, allowNull: false })
   qty: number
 
   @Column({ type: DataType.STRING, allowNull: true })
