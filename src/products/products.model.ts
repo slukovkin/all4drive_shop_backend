@@ -1,7 +1,8 @@
-import { BelongsToMany, Column, DataType, Model, Table } from 'sequelize-typescript'
+import { BelongsToMany, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import { IProductCreationAttributes } from './types/types'
 import { Store } from '../stores/stores.model'
 import { ProductStore } from '../product-in-store/product-stores.model'
+import { Category } from '../categories/category.model'
 
 
 @Table({ tableName: 'products' })
@@ -21,6 +22,10 @@ export class Product extends Model<Product, IProductCreationAttributes> {
 
   @Column({ type: DataType.STRING, allowNull: true })
   brand: string
+
+  @ForeignKey(() => Category)
+  @Column({ type: DataType.INTEGER, allowNull: true })
+  categoryId: number
 
   @Column({ type: DataType.DOUBLE, allowNull: false })
   price: number
