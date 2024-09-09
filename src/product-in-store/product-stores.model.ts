@@ -23,4 +23,12 @@ export class ProductStore extends Model<ProductStore> {
   @ApiProperty({ example: '10', description: 'Количество товара' })
   @Column({ type: DataType.DOUBLE, allowNull: true })
   qty: number
+
+  @ApiProperty({ example: '20', description: 'Цена закупочная товара' })
+  @Column({ type: DataType.DOUBLE, allowNull: true })
+  priceIn: number
+
+  @ApiProperty({ example: '30', description: 'Цена розничная товара' })
+  @Column({ type: DataType.DOUBLE, allowNull: true })
+  priceOut: number
 }
