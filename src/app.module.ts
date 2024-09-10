@@ -25,6 +25,8 @@ import { CurrencyModule } from './currency/currency.module'
 import { Currency } from './currency/currency.model'
 import { CategoriesModule } from './categories/categories.module'
 import { Category } from './categories/category.model'
+import { OrdersModule } from './orders/orders.module'
+import { Order } from './orders/order.model'
 
 @Module({
   imports: [
@@ -38,7 +40,7 @@ import { Category } from './categories/category.model'
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      models: [User, Role, UserRoles, Product, Store, ProductStore, Customer, Settings, Currency, Category],
+      models: [User, Role, UserRoles, Product, Store, ProductStore, Customer, Settings, Currency, Category, Order],
       autoLoadModels: true,
     }),
     ServeStaticModule.forRoot({
@@ -55,6 +57,7 @@ import { Category } from './categories/category.model'
     SettingsModule,
     CurrencyModule,
     CategoriesModule,
+    OrdersModule,
   ],
   controllers: [],
   providers: [],
