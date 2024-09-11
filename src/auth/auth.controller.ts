@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { AuthService } from './auth.service'
 import { CreateUserDto } from '../users/dto/create-user.dto'
@@ -19,8 +19,8 @@ export class AuthController {
     return this.authService.registration(userDto)
   }
 
-  @Post('/role')
-  checkRole(@Body() token: string) {
-    return this.authService.checkRole(token)
+  @Get('/:token')
+  checkToken(@Param('token') token: string) {
+    return this.authService.checkToken(token)
   }
 }

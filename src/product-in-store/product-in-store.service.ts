@@ -35,16 +35,12 @@ export class ProductInStoreService {
   }
 
   async getAllProductFromStore(storeId: number = 1) {
-    return await this.productStoreRepository.findAll({ where: { storeId } })
+    return await this.productStoreRepository.findAll({ where: { storeId }, include: { all: true } })
   }
 
   async getProductInStoreById(productId: number) {
-    return await this.productStoreRepository.findOne({ where: { productId: productId } })
+    return await this.productStoreRepository.findOne({ where: { productId }, include: { all: true } })
   }
-
-  // async updateQtyInStore(qty: number) {
-  //   return this.productStoreRepository.update()
-  // }
 
   async removeProductFromStore(productId: number) {
     return await this.productStoreRepository.destroy({ where: { productId } })

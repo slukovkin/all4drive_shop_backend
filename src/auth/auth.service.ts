@@ -45,9 +45,7 @@ export class AuthService {
     throw new UnauthorizedException({ message: 'Некорректный email или пароль' })
   }
 
-  async checkRole(token: string) {
-    return token
-    // const response = await this.jwtService.verify(token)
-    // console.log(response)
+  async checkToken(token: string) {
+    return await this.jwtService.verifyAsync(token, { secret: 'all4drive' })
   }
 }
