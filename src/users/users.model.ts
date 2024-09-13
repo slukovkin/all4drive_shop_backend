@@ -25,11 +25,15 @@ export class User extends Model<User, IUserCreationAttributes> {
 
   @ApiProperty({ example: 'Ivan', description: 'firstname of user' })
   @Column({ type: DataType.STRING, allowNull: true })
-  firstName: string | null
+  firstname: string | null
 
   @ApiProperty({ example: 'Ivanov', description: 'lastname of user' })
   @Column({ type: DataType.STRING, allowNull: true })
-  lastName: string | null
+  lastname: string | null
+
+  @ApiProperty({ example: 'Надежный', description: 'Описание пользователя' })
+  @Column({ type: DataType.STRING, allowNull: true })
+  description: string
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[]

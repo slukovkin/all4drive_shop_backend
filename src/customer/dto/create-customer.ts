@@ -1,6 +1,6 @@
 export class CustomerCreationDto {
-  name: string
-  surname: string
+  firstname: string
+  lastname: string
   email: string
   phone: string
   description: string

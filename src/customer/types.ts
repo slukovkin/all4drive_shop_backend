@@ -1,16 +1,16 @@
 export interface ICustomerCreationAttrs {
   id?: number;
-  name: string;
-  surname: string;
+  firstname: string;
+  lastname: string;
   email: string;
   phone: string;
-  description: string;
+  description?: string;
 }
 
 export interface ICustomerUpdateAttrs {
-  name: string;
-  surname: string;
+  firstname: string;
+  lastname: string;
   email: string;
   phone: string;
-  description: string;
+  description?: string;
 }
