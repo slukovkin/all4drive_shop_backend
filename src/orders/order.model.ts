@@ -1,5 +1,5 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript'
-import { IProductOrderInterface } from './types/product-order.interface'
+import { IProductInBasket } from './types/product-order.interface'
 
 @Table({ tableName: 'orders' })
 export class Order extends Model<Order> {
@@ -10,5 +10,5 @@ export class Order extends Model<Order> {
   userId: number // id пользователя
 
   @Column({ type: DataType.JSON })
-  productList: IProductOrderInterface[] // список товаров в заказе
+  productList: IProductInBasket[] // список товаров в заказе
 }
