@@ -6,7 +6,7 @@ export class Order extends Model<Order> {
   @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
   id: number // id заказа
 
-  @Column({ type: DataType.INTEGER, unique: true, allowNull: false })
+  @Column({ type: DataType.INTEGER, allowNull: false })
   userId: number // id пользователя
 
   @Column({ type: DataType.JSON })
