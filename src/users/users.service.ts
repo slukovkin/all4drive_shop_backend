@@ -37,4 +37,8 @@ export class UsersService {
   async updateUserById(id: number, user: IUserProfile) {
     return await this.userRepository.update(user, { where: { id } })
   }
+
+  async deleteUserById(id: number) {
+    return await this.userRepository.destroy({ where: { id: id } })
+  }
 }
