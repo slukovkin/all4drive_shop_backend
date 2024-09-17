@@ -1,0 +1,35 @@
+version: '3.0'
+
+services:
+  main:
+    container_name: main
+    build:
+      context: .
+    env_file:
+      - .development.env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - '5000:5000'
+      - '9229:9229'
+    command: npm run start:dev
+    depends_on:
+      - mysql
+    restart: always
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.30
+    environment:
+      MYSQL_DATABASE: 'ermel'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: '86818682'
+      MYSQL_ROOT_PASSWORD: '86818682'
+    ports:
+      - '3306:3306'
+    volumes:
+      - my-db:/var/lib/mysql
+    restart: always
+
+volumes:
+  my-db:

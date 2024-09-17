@@ -27,7 +27,7 @@ export class AuthService {
 
   private async generateToken(user: User) {
     const payload = { email: user.email, id: user.id, roles: user.roles }
-    const token = this.jwtService.sign(payload, { secret: 'all4drive', expiresIn: '1h' })
+    const token = this.jwtService.sign(payload, { secret: 'all4drive', expiresIn: '24h' })
     return {
       user: user,
       token: `Bearer ${token}`,
@@ -46,6 +46,11 @@ export class AuthService {
   }
 
   async checkToken(token: string) {
-    return await this.jwtService.verifyAsync(token, { secret: 'all4drive' })
+    const bearer = token.split(' ')[0]
+    const verifyToken = token.split(' ')[1]
+    if (bearer === 'Bearer' && verifyToken) {
+      return await this.jwtService.verifyAsync(verifyToken, { secret: 'all4drive' })
+    }
+    return null
   }
 }
