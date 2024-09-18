@@ -19,11 +19,11 @@ export class CountryService {
   }
 
   async getAllCountries() {
-    return await this.countryRepository.findAll()
+    return await this.countryRepository.findAll({ include: { all: true } })
   }
 
   async getCountryById(id: number) {
-    return await this.countryRepository.findOne({ where: { id } })
+    return await this.countryRepository.findOne({ where: { id }, include: { all: true } })
   }
 
   private async getCountryByCode(code: number) {

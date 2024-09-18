@@ -27,9 +27,9 @@ import { CategoriesModule } from './categories/categories.module'
 import { Category } from './categories/category.model'
 import { OrdersModule } from './orders/orders.module'
 import { Order } from './orders/order.model'
-import { ManufacturerModule } from './manufacturer/manufacturer.module'
 import { Manufacturer } from './manufacturer/manufacturer.model'
 import { Country } from './country/country.model'
+import { ManufacturerModule } from './manufacturer/manufacturer.module'
 import { CountryModule } from './country/country.module'
 
 @Module({

@@ -19,11 +19,11 @@ export class ManufacturerService {
   }
 
   async getAll() {
-    return await this.manufacturerRepository.findAll()
+    return await this.manufacturerRepository.findAll({ include: { all: true } })
   }
 
   async getManufacturerById(id: number) {
-    return await this.manufacturerRepository.findOne({ where: { id } })
+    return await this.manufacturerRepository.findOne({ where: { id }, include: { all: true } })
   }
 
   private async getManufacturerByTitle(title: string) {
