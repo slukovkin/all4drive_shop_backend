@@ -27,6 +27,10 @@ import { CategoriesModule } from './categories/categories.module'
 import { Category } from './categories/category.model'
 import { OrdersModule } from './orders/orders.module'
 import { Order } from './orders/order.model'
+import { ManufacturerModule } from './manufacturer/manufacturer.module'
+import { Manufacturer } from './manufacturer/manufacturer.model'
+import { Country } from './country/country.model'
+import { CountryModule } from './country/country.module'
 
 @Module({
   imports: [
@@ -40,7 +44,8 @@ import { Order } from './orders/order.model'
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      models: [User, Role, UserRoles, Product, Store, ProductStore, Customer, Settings, Currency, Category, Order],
+      models: [User, Role, UserRoles, Product, Store, ProductStore,
+        Customer, Settings, Currency, Category, Order, Manufacturer, Country],
       autoLoadModels: true,
     }),
     ServeStaticModule.forRoot({
@@ -58,6 +63,8 @@ import { Order } from './orders/order.model'
     CurrencyModule,
     CategoriesModule,
     OrdersModule,
+    ManufacturerModule,
+    CountryModule,
   ],
   controllers: [],
   providers: [],
