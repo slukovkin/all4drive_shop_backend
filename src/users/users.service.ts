@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   async getUserById(id: number) {
-    return await this.userRepository.findOne({ where: { id } })
+    return await this.userRepository.findOne({ where: { id }, include: { all: true } })
   }
 
   async getUserByEmail(email: string) {

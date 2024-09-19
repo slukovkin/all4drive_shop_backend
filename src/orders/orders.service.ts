@@ -11,7 +11,7 @@ export class OrdersService {
   }
 
   async getAllOrders() {
-    return await this.orderRepository.findAll()
+    return await this.orderRepository.findAll({ include: { all: true } })
   }
 
   async createOrder(order: CreateOrderDto) {
@@ -19,7 +19,7 @@ export class OrdersService {
   }
 
   async getOrderById(id: number) {
-    return await this.orderRepository.findOne({ where: { id } })
+    return await this.orderRepository.findOne({ where: { id }, include: { all: true } })
   }
 
   async updateOrderById(id: number, order: CreateOrderDto) {

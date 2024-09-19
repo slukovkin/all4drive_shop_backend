@@ -25,11 +25,11 @@ export class ProductsService {
   }
 
   async getProductById(id: number) {
-    return await this.productRepository.findOne({ where: { id } })
+    return await this.productRepository.findOne({ where: { id }, include: { all: true } })
   }
 
   async getProductByCode(code: number) {
-    return await this.productRepository.findOne({ where: { code } })
+    return await this.productRepository.findOne({ where: { code }, include: { all: true } })
   }
 
   async updateProductById(id: number, product: IProductUpdateAttributes) {

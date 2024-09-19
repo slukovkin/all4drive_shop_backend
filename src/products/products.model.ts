@@ -1,4 +1,4 @@
-import { BelongsToMany, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import { IProductCreationAttributes } from './types/types'
 import { Store } from '../stores/stores.model'
 import { ProductStore } from '../product-in-store/product-stores.model'
@@ -41,4 +41,7 @@ export class Product extends Model<Product, IProductCreationAttributes> {
 
   @BelongsToMany(() => Store, () => ProductStore)
   stores: Store[]
+
+  @BelongsTo(() => Category)
+  category: Category
 }
