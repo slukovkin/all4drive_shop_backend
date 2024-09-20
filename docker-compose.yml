@@ -21,10 +21,10 @@ services:
     container_name: mysql
     image: mysql:8.0.30
     environment:
-      MYSQL_DATABASE: 'ermel'
+      MYSQL_DATABASE: 'shop'
       MYSQL_USER: 'root'
-      MYSQL_PASSWORD: '86818682'
-      MYSQL_ROOT_PASSWORD: '86818682'
+      MYSQL_PASSWORD: 'my_password'
+      MYSQL_ROOT_PASSWORD: 'my_password'
     ports:
       - '3306:3306'
     volumes:
