@@ -31,6 +31,7 @@ import { Manufacturer } from './manufacturer/manufacturer.model'
 import { Country } from './country/country.model'
 import { ManufacturerModule } from './manufacturer/manufacturer.module'
 import { CountryModule } from './country/country.module'
+import { EmailModule } from './email/email.module'
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { CountryModule } from './country/country.module'
     OrdersModule,
     ManufacturerModule,
     CountryModule,
+    EmailModule,
   ],
   controllers: [],
   providers: [],
