@@ -10,7 +10,7 @@ export class SettingsService {
   }
 
   async getAll() {
-    return await this.settingsRepository.findAll()
+    return await this.settingsRepository.findAll({ include: { all: true } })
   }
 
   async create(settingDto: ISettingCreationAttributes) {

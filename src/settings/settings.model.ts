@@ -1,5 +1,7 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript'
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import { ISettingCreationAttributes } from './types/types'
+import { Store } from '../stores/stores.model'
+import { Currency } from '../currency/currency.model'
 
 @Table({ tableName: 'settings' })
 export class Settings extends Model<Settings, ISettingCreationAttributes> {
@@ -10,9 +12,11 @@ export class Settings extends Model<Settings, ISettingCreationAttributes> {
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   firmName: string // название фирмы
 
+  @ForeignKey(() => Currency)
   @Column({ type: DataType.INTEGER })
   currencyId: number // id валюты учета
 
+  @ForeignKey(() => Store)
   @Column({ type: DataType.INTEGER })
   storeId: number // id склада по умолчанию
 
@@ -33,4 +37,10 @@ export class Settings extends Model<Settings, ISettingCreationAttributes> {
 
   @Column({ type: DataType.STRING })
   telegramKey: string
+
+  @BelongsTo(() => Store)
+  store: Store
+
+  @BelongsTo(() => Currency)
+  currency: Currency
 }

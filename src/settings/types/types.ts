@@ -22,4 +22,15 @@ export interface ISettings {
   markup: number | null,
   employeeId?: number | null,
   telegramKey?: number | null,
+  store: {
+    id: 1,
+    title: 'Основной',
+    description: 'Главный склад'
+  },
+  currency: {
+    id: 2,
+    code: 'EUR',
+    name: 'Евро',
+    rate: 46.05
+  }
 }
