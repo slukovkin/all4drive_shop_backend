@@ -1,10 +1,10 @@
 export class InvoiceCreationDto {
   id?: number
-  doc_number: number
+  doc_number: string
   type: string
   customerId: number
   date: string
-  orderId: number
+  orderId?: number
   amount: number
   status: boolean
 }

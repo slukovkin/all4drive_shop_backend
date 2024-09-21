@@ -31,3 +31,4 @@ export interface IProductUpdateAttributes {
   readonly qty: number
   readonly imageUrl: string
 }
+

@@ -10,7 +10,7 @@ export class Invoice extends Model<Invoice, InvoiceCreationDto> {
   id: number
 
   @Column({ type: DataType.STRING, allowNull: false })
-  doc_number: number
+  doc_number: string
 
   @Column({ type: DataType.STRING, allowNull: false })
   type: string
@@ -23,7 +23,7 @@ export class Invoice extends Model<Invoice, InvoiceCreationDto> {
   date: string
 
   @ForeignKey(() => Order)
-  @Column({ type: DataType.INTEGER, allowNull: false })
+  @Column({ type: DataType.INTEGER, allowNull: true })
   orderId: number
 
   @Column({ type: DataType.DOUBLE, allowNull: false })
