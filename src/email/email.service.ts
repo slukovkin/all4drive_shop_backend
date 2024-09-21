@@ -8,10 +8,7 @@ export class EmailService {
   //   host: 'smtp.google.com',
   //   port: 587,
   //   secure: false, // true for port 465, false for other ports
-  //   auth: {
-  //     user: 'lukovkin8@gmail.com',
-  //     pass: '217146242230',
-  //   },
+
   // })
 
   async sendEmail(email: EmailDto) {
