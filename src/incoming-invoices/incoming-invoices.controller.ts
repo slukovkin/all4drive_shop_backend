@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
-import { InvoicesService } from './invoices.service'
+import { IncomingInvoicesService } from './incoming-invoices.service'
 import { InvoiceCreationDto } from './dto/invoice.dto'
 
-@Controller('invoices')
-export class InvoicesController {
-  constructor(private readonly invoicesService: InvoicesService) {
+@Controller('incoming_invoices')
+export class IncomingInvoicesController {
+  constructor(private readonly invoicesService: IncomingInvoicesService) {
   }
 
   @Get()

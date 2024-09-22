@@ -3,8 +3,8 @@ import { Order } from '../orders/order.model'
 import { InvoiceCreationDto } from './dto/invoice.dto'
 import { User } from '../users/users.model'
 
-@Table({ tableName: 'invoices' })
-export class Invoice extends Model<Invoice, InvoiceCreationDto> {
+@Table({ tableName: 'incoming-invoices' })
+export class IncomingInvoice extends Model<IncomingInvoice, InvoiceCreationDto> {
 
   @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
   id: number

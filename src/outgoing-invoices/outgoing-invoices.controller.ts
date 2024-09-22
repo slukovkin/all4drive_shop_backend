@@ -3,7 +3,7 @@ import { OutgoingInvoicesService } from './outgoing-invoices.service'
 import { InvoiceCreationDto } from './dto/outgoing-invoice.dto'
 
 
-@Controller('outgoing')
+@Controller('outgoing_invoices')
 export class OutgoingInvoicesController {
   constructor(private readonly outgoingInvoicesService: OutgoingInvoicesService) {
   }

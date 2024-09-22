@@ -32,7 +32,7 @@ import { Country } from './country/country.model'
 import { ManufacturerModule } from './manufacturer/manufacturer.module'
 import { CountryModule } from './country/country.module'
 import { EmailModule } from './email/email.module'
-import { InvoicesModule } from './invoices/invoices.module'
+import { IncomingInvoicesModule } from './incoming-invoices/incoming-invoices.module'
 import { OutgoingInvoicesModule } from './outgoing-invoices/outgoing-invoices.module'
 import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
 
@@ -70,7 +70,7 @@ import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
     ManufacturerModule,
     CountryModule,
     EmailModule,
-    InvoicesModule,
+    IncomingInvoicesModule,
     OutgoingInvoicesModule,
   ],
   controllers: [],
