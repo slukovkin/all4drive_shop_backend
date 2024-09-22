@@ -1,5 +1,3 @@
-version: '3.0'
-
 services:
   main:
     container_name: main
@@ -22,11 +20,11 @@ services:
     image: mysql:8.0.30
     environment:
       MYSQL_DATABASE: 'shop'
-      MYSQL_USER: 'root'
+      MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'my_password'
       MYSQL_ROOT_PASSWORD: 'my_password'
     ports:
-      - '3306:3306'
+      - '3310:3310'
     volumes:
       - my-db:/var/lib/mysql
     restart: always
