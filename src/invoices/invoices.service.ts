@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { Invoice } from './invoice.model'
 import { InvoiceCreationDto } from './dto/invoice.dto'
 import { InjectModel } from '@nestjs/sequelize'
+import { where } from 'sequelize'
 
 @Injectable()
 export class InvoicesService {

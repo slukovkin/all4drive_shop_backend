@@ -33,6 +33,8 @@ import { ManufacturerModule } from './manufacturer/manufacturer.module'
 import { CountryModule } from './country/country.module'
 import { EmailModule } from './email/email.module'
 import { InvoicesModule } from './invoices/invoices.module'
+import { OutgoingInvoicesModule } from './outgoing-invoices/outgoing-invoices.module'
+import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
 
 @Module({
   imports: [
@@ -47,7 +49,7 @@ import { InvoicesModule } from './invoices/invoices.module'
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       models: [User, Role, UserRoles, Product, Store, ProductStore,
-        Customer, Settings, Currency, Category, Order, Manufacturer, Country],
+        Customer, Settings, Currency, Category, Order, Manufacturer, Country, OutgoingInvoice],
       autoLoadModels: true,
     }),
     ServeStaticModule.forRoot({
@@ -69,6 +71,7 @@ import { InvoicesModule } from './invoices/invoices.module'
     CountryModule,
     EmailModule,
     InvoicesModule,
+    OutgoingInvoicesModule,
   ],
   controllers: [],
   providers: [],
