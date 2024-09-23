@@ -17,6 +17,12 @@ export class Order extends Model<Order> {
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   isDone: boolean
 
+  @Column({ type: DataType.STRING })
+  city: string
+
+  @Column({ type: DataType.STRING })
+  post: string
+
   @BelongsTo(() => User)
   users: User
 }
