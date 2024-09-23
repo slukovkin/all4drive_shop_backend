@@ -35,6 +35,9 @@ import { EmailModule } from './email/email.module'
 import { IncomingInvoicesModule } from './incoming-invoices/incoming-invoices.module'
 import { OutgoingInvoicesModule } from './outgoing-invoices/outgoing-invoices.module'
 import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
+import { CrossModule } from './cross/cross.module'
+import { IncomingInvoice } from './incoming-invoices/incoming-invoice.model'
+import { Cross } from './cross/cross.model'
 
 @Module({
   imports: [
@@ -49,7 +52,8 @@ import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
       models: [User, Role, UserRoles, Product, Store, ProductStore,
-        Customer, Settings, Currency, Category, Order, Manufacturer, Country, OutgoingInvoice],
+        Customer, Settings, Currency, Category, Order, Manufacturer,
+        Country, OutgoingInvoice, IncomingInvoice, Cross],
       autoLoadModels: true,
     }),
     ServeStaticModule.forRoot({
@@ -72,6 +76,7 @@ import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
     EmailModule,
     IncomingInvoicesModule,
     OutgoingInvoicesModule,
+    CrossModule,
   ],
   controllers: [],
   providers: [],
