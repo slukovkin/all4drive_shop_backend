@@ -26,7 +26,7 @@ export class RolesGuard implements CanActivate {
       const token = headers.split(' ')[1]
 
       if (bearer == 'Bearer' && token) {
-        const user: User = this.jwtService.verify(token)
+        const user: User = this.jwtService.verify(token, { secret: 'all4drive' })
         request.user = user
         return user.roles.some(role => requiredRoles.includes(role.value))
       }

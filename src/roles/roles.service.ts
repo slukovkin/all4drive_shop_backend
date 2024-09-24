@@ -12,6 +12,10 @@ export class RolesService {
     return this.roleRepository.create(dto)
   }
 
+  async getAllRoles() {
+    return await this.roleRepository.findAll()
+  }
+
   async getRoleByValue(value: string) {
     return this.roleRepository.findOne({ where: { value } })
   }

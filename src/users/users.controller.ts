@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common'
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { UsersService } from './users.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { User } from './users.model'
 import { IUserProfile } from './types/types'
+import { Roles } from 'src/decorators/role-auth.decorator'
+import { RolesGuard } from 'src/guards/roles.guard'
 
 @ApiTags('Users')
 @Controller('users')
@@ -22,8 +24,8 @@ export class UsersController {
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, type: [User] })
   @Get()
-  // @Roles('ADMIN')
-  // @UseGuards(RolesGuard)
+  @Roles('ADMIN', 'USER')
+  @UseGuards(RolesGuard)
   getAllUser() {
     return this.usersService.getAllUsers()
   }
@@ -31,6 +33,8 @@ export class UsersController {
   @ApiOperation({ summary: 'get user by id' })
   @ApiResponse({ status: 200, type: User })
   @Get('/:id')
+  @Roles('ADMIN', 'USER')
+  @UseGuards(RolesGuard)
   getUserById(@Param('id') id: number) {
     return this.usersService.getUserById(id)
   }
@@ -38,11 +42,15 @@ export class UsersController {
   @ApiOperation({ summary: 'get user by id' })
   @ApiResponse({ status: 200, type: User })
   @Patch('/profile/:id')
+  @Roles('ADMIN', 'USER')
+  @UseGuards(RolesGuard)
   updateUserById(@Param('id') id: number, @Body() user: IUserProfile) {
     return this.usersService.updateUserById(id, user)
   }
 
+  @Roles('ADMIN')
   @Delete('/:id')
+  @UseGuards(RolesGuard)
   deleteUserById(@Param('id') id: number) {
     return this.usersService.deleteUserById(id)
   }

@@ -30,7 +30,8 @@ export class AuthService {
     const token = this.jwtService.sign(payload, { secret: 'all4drive', expiresIn: '24h' })
     return {
       user: user,
-      token: `Bearer ${token}`,
+      token: token,
+      // token: `Bearer ${token}`,
     }
   }
 
@@ -46,9 +47,9 @@ export class AuthService {
   }
 
   async checkToken(token: string) {
-    const bearer = token.split(' ')[0]
-    const verifyToken = token.split(' ')[1]
-    if (bearer === 'Bearer' && verifyToken) {
+    // const bearer = token.split(' ')[0]
+    const verifyToken = token
+    if (verifyToken) {
       return await this.jwtService.verifyAsync(verifyToken, { secret: 'all4drive' })
     }
     return null
