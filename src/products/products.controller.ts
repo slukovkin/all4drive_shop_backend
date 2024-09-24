@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common'
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { ProductsService } from './products.service'
 import { CreateProductDto } from './dto/create-product.dto'
 import { IProductUpdateAttributes } from './types/types'
+import { Roles } from '../decorators/role-auth.decorator'
+import { RolesGuard } from '../guards/roles.guard'
 
 @ApiTags('Products')
 @Controller('products')
@@ -11,6 +13,8 @@ export class ProductsController {
   }
 
   @Post()
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
   create(@Body() productDto: CreateProductDto) {
     return this.productsService.create(productDto)
   }
@@ -31,11 +35,15 @@ export class ProductsController {
   }
 
   @Patch('/:id')
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
   updateProductById(@Param('id') id: number, @Body() product: IProductUpdateAttributes) {
     return this.productsService.updateProductById(id, product)
   }
 
   @Delete('/:id')
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
   deleteProductById(@Param('id') id: number) {
     return this.productsService.deleteProductById(id)
   }

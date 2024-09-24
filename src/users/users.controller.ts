@@ -48,8 +48,8 @@ export class UsersController {
     return this.usersService.updateUserById(id, user)
   }
 
-  @Roles('ADMIN')
   @Delete('/:id')
+  @Roles('ADMIN')
   @UseGuards(RolesGuard)
   deleteUserById(@Param('id') id: number) {
     return this.usersService.deleteUserById(id)
