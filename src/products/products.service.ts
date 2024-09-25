@@ -53,14 +53,16 @@ export class ProductsService {
   }
 
   async getAllProductsByOrigin(origin: string) {
+    const cleanedOriginal = origin.replace(/[^a-zA-Z0-9]/g, '')
+    const request = `%${cleanedOriginal}%`
     return await this.sequelize.query(
       `SELECT p.* 
        FROM products AS p 
        INNER JOIN cross_table AS ct 
        ON p.cross = ct.code 
-       WHERE ct.origin = :origin`,
+       WHERE ct.origin LIKE :request`,
       {
-        replacements: { origin }, // Безопасная подстановка параметров
+        replacements: { request }, // Безопасная подстановка параметров
         model: Product, // Указываем модель, чтобы результат был представлен как экземпляры модели
         mapToModel: true, // Указываем, что нужно сопоставить результат с моделью
       },
