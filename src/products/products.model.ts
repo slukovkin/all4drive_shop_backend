@@ -3,6 +3,7 @@ import { IProductCreationAttributes } from './types/types'
 import { Store } from '../stores/stores.model'
 import { ProductStore } from '../product-in-store/product-stores.model'
 import { Category } from '../categories/category.model'
+import { Cross } from '../cross/cross.model'
 
 
 @Table({ tableName: 'products' })
@@ -44,4 +45,8 @@ export class Product extends Model<Product, IProductCreationAttributes> {
 
   @BelongsTo(() => Category)
   category: Category
+
+  @BelongsTo(() => Cross, { foreignKey: 'cross', targetKey: 'code', as: 'cross_code' })
+  cross_code: Cross // Определение ассоциации
+
 }

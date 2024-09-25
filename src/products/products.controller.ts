@@ -34,6 +34,16 @@ export class ProductsController {
     return this.productsService.getProductByCode(code)
   }
 
+  @Get('/search/cross/:code')
+  getProductByCross(@Param('code') code: string) {
+    return this.productsService.getProductByCross(code)
+  }
+
+  @Get('/search/origin/:origin')
+  getAllProductsByOrigin(@Param('origin') origin: string) {
+    return this.productsService.getAllProductsByOrigin(origin)
+  }
+
   @Patch('/:id')
   @Roles('ADMIN')
   @UseGuards(RolesGuard)

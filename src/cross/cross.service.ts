@@ -24,6 +24,7 @@ export class CrossService {
     return await this.crossRepository.findAll({ where: { origin } })
   }
 
+
   async delete(id: number) {
     return await this.crossRepository.destroy({ where: { id } })
   }

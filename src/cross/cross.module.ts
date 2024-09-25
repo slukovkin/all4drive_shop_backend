@@ -3,9 +3,10 @@ import { CrossController } from './cross.controller'
 import { CrossService } from './cross.service'
 import { SequelizeModule } from '@nestjs/sequelize'
 import { Cross } from './cross.model'
+import { Product } from '../products/products.model'
 
 @Module({
-  imports: [SequelizeModule.forFeature([Cross])],
+  imports: [SequelizeModule.forFeature([Cross, Product])],
   controllers: [CrossController],
   providers: [CrossService],
 })

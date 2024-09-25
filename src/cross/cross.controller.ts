@@ -17,11 +17,11 @@ export class CrossController {
     return this.crossService.getAll()
   }
 
-  @Get('/:code')
+  @Get('/code/:code')
   getAllByCode(@Param('code') code: string) {
     return this.crossService.getAllByCode(code)
   }
-
+  
   @Get('/origin/:origin')
   getAllByOrigin(@Param('origin') origin: string) {
     return this.crossService.getAllByOrigin(origin)

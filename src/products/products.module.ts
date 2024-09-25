@@ -7,12 +7,13 @@ import { Store } from '../stores/stores.model'
 import { ProductStore } from '../product-in-store/product-stores.model'
 import { Category } from '../categories/category.model'
 import { JwtModule } from '@nestjs/jwt'
+import { Cross } from '../cross/cross.model'
 
 @Module({
   controllers: [ProductsController],
   providers: [ProductsService],
   imports: [
-    SequelizeModule.forFeature([Product, Store, ProductStore, Category]),
+    SequelizeModule.forFeature([Product, Store, ProductStore, Category, Cross]),
     JwtModule],
 })
 export class ProductsModule {

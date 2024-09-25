@@ -5,12 +5,16 @@ import { IProductUpdateAttributes } from './types/types'
 import { Product } from './products.model'
 import * as fs from 'node:fs'
 import * as path from 'node:path'
+import { Cross } from '../cross/cross.model'
+import { Sequelize } from 'sequelize-typescript'
 
 @Injectable()
 export class ProductsService {
 
   constructor(
-    @InjectModel(Product) private productRepository: typeof Product) {
+    @InjectModel(Product) private productRepository: typeof Product,
+    @InjectModel(Cross) private crossModel: typeof Cross,
+    private sequelize: Sequelize) {
   }
 
   async create(productDto: CreateProductDto) {
@@ -32,9 +36,41 @@ export class ProductsService {
     return await this.productRepository.findOne({ where: { code }, include: { all: true } })
   }
 
+  async getProductByCross(code: string) {
+    return await this.productRepository.findOne({ where: { code }, include: { all: true } })
+  }
+
+  async getAllProductsByOrigin(origin: string) {
+    return await this.sequelize.query(
+      `SELECT p.* 
+       FROM products AS p 
+       INNER JOIN cross_table AS ct 
+       ON p.cross = ct.code 
+       WHERE ct.origin = :origin`,
+      {
+        replacements: { origin }, // Безопасная подстановка параметров
+        model: Product, // Указываем модель, чтобы результат был представлен как экземпляры модели
+        mapToModel: true, // Указываем, что нужно сопоставить результат с моделью
+      },
+    )
+  }
+
+  // async getAllProductsByOrigin(origin: string) {
+  //   return await this.productRepository.findAll({
+  //     include: [{
+  //       model: this.crossModel,
+  //       as: 'cross_code',
+  //       where: { origin },
+  //       attributes: [],
+  //     }],
+  //     attributes: ['*'],
+  //   })
+  // }
+
   async updateProductById(id: number, product: IProductUpdateAttributes) {
     return await this.productRepository.update<Product>(product, { where: { id } })
   }
+
 
   async deleteProductById(id: number) {
     const product = await this.getProductById(id)
