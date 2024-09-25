@@ -56,10 +56,10 @@ export class ProductsService {
     const cleanedOriginal = origin.replace(/[^a-zA-Z0-9]/g, '')
     const request = `%${cleanedOriginal}%`
     return await this.sequelize.query(
-      `SELECT p.* 
-       FROM products AS p 
-       INNER JOIN cross_table AS ct 
-       ON p.cross = ct.code 
+      `SELECT p.*
+       FROM products AS p
+       INNER JOIN cross_table AS ct
+       ON p.cross = ct.code
        WHERE ct.origin LIKE :request`,
       {
         replacements: { request }, // Безопасная подстановка параметров
@@ -68,18 +68,6 @@ export class ProductsService {
       },
     )
   }
-
-  // async getAllProductsByOrigin(origin: string) {
-  //   return await this.productRepository.findAll({
-  //     include: [{
-  //       model: this.crossModel,
-  //       as: 'cross_code',
-  //       where: { origin },
-  //       attributes: [],
-  //     }],
-  //     attributes: ['*'],
-  //   })
-  // }
 
   async updateProductById(id: number, product: IProductUpdateAttributes) {
     return await this.productRepository.update<Product>(product, { where: { id } })
