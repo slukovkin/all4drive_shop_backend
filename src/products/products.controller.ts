@@ -44,6 +44,13 @@ export class ProductsController {
     return this.productsService.getAllProductsByOrigin(origin)
   }
 
+  @Post('/findProductById')
+  // @Roles('ADMIN')
+  // @UseGuards(RolesGuard)
+  pullAllProductsFromStoreByArrayId(@Body('ids') ids: number[]) {
+    return this.productsService.pullAllProductsFromStoreByArrayId(ids)
+  }
+
   @Patch('/:id')
   @Roles('ADMIN')
   @UseGuards(RolesGuard)

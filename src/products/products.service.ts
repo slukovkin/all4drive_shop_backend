@@ -7,6 +7,7 @@ import * as fs from 'node:fs'
 import * as path from 'node:path'
 import { Cross } from '../cross/cross.model'
 import { Sequelize } from 'sequelize-typescript'
+import { Op } from 'sequelize'
 
 @Injectable()
 export class ProductsService {
@@ -38,6 +39,17 @@ export class ProductsService {
 
   async getProductByCross(code: string) {
     return await this.productRepository.findOne({ where: { code }, include: { all: true } })
+  }
+
+  async pullAllProductsFromStoreByArrayId(productIds: number[]) {
+    return await this.productRepository.findAll({
+      where: {
+        id: {
+          [Op.in]: productIds, // Поиск по массиву productId
+        },
+      },
+      include: { all: true }, // Включение всех ассоциаций, если необходимо
+    })
   }
 
   async getAllProductsByOrigin(origin: string) {
