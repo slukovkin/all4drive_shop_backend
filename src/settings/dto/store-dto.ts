@@ -7,5 +7,6 @@ export interface StoreDto {
   priceTypeThree: number | null,
   markup: number | null,
   employeeId: number | null, // id сотрудника по умолчанию
+  telegramBotName: string,
   telegramKey: string, // ключ телеграм-бота
 }

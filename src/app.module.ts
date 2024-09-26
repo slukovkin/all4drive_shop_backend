@@ -38,6 +38,8 @@ import { OutgoingInvoice } from './outgoing-invoices/outgoing-invoice.model'
 import { CrossModule } from './cross/cross.module'
 import { IncomingInvoice } from './incoming-invoices/incoming-invoice.model'
 import { Cross } from './cross/cross.model'
+import { TelegramModule } from './telegram/telegram.module'
+import { HttpModule } from '@nestjs/axios'
 
 @Module({
   imports: [
@@ -77,6 +79,8 @@ import { Cross } from './cross/cross.model'
     IncomingInvoicesModule,
     OutgoingInvoicesModule,
     CrossModule,
+    TelegramModule,
+    HttpModule,
   ],
   controllers: [],
   providers: [],
