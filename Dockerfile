@@ -2,12 +2,6 @@ FROM node:20.17.0-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
 COPY ./dist ./dist
 
-CMD ["npm", "run", "start:prod"]
+CMD ["node", "dist/main.js"]

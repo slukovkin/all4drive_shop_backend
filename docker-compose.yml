@@ -6,11 +6,10 @@ services:
     env_file:
       - .production.env
     volumes:
-      - /app
-      - /app/node_modules
+      - .:/app
     ports:
       - '5000:5000'
-    command: npm run start:prod
+    command: node dist/main.js
     depends_on:
       - mysql
     restart: always
@@ -23,10 +22,15 @@ services:
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      - '3310:3310'
+      - '3310:3306'
     volumes:
       - my-db:/var/lib/mysql
     restart: always
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   my-db:

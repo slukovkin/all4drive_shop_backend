@@ -37,6 +37,7 @@ export class Product extends Model<Product, IProductCreationAttributes> {
   @Column({ type: DataType.STRING, allowNull: true })
   imageUrl: string
 
+  @ForeignKey(() => Cross)
   @Column({ type: DataType.INTEGER })
   cross: number
 
@@ -46,7 +47,9 @@ export class Product extends Model<Product, IProductCreationAttributes> {
   @BelongsTo(() => Category)
   category: Category
 
-  @BelongsTo(() => Cross, { foreignKey: 'cross', targetKey: 'code', as: 'cross_code' })
+  @BelongsTo(() => Cross)
   cross_code: Cross // Определение ассоциации
+  // // @BelongsTo(() => Cross, { foreignKey: 'cross', targetKey: 'code', as: 'cross_code' })
+  // cross_code: Cross // Определение ассоциации
 
 }
