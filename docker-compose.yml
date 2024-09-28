@@ -11,7 +11,8 @@ services:
       - '5000:5000'
     command: node dist/main.js
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     restart: always
   mysql:
     container_name: database
@@ -24,7 +25,9 @@ services:
     ports:
       - '3310:3306'
     volumes:
-      - my-db:/var/lib/mysql
+      - db:/var/lib/mysql
+      - ./dump_sql:/docker-entrypoint-initdb.d/
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
     restart: always
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
@@ -33,4 +36,4 @@ services:
       retries: 5
 
 volumes:
-  my-db:
+  db:
