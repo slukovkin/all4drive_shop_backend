@@ -4,6 +4,7 @@ import { User } from './users.model'
 import { CreateUserDto } from './dto/create-user.dto'
 import { RolesService } from '../roles/roles.service'
 import { IUserProfile } from './types/types'
+import * as bcrypt from 'bcryptjs'
 
 @Injectable()
 export class UsersService {
@@ -35,10 +36,16 @@ export class UsersService {
   }
 
   async updateUserById(id: number, user: IUserProfile) {
-    return await this.userRepository.update(user, { where: { id } })
+    const passwordHash = await this.generationPasswordHash(user.password)
+    return await this.userRepository.update({ ...user, password: passwordHash }, { where: { id } })
   }
 
   async deleteUserById(id: number) {
     return await this.userRepository.destroy({ where: { id: id } })
+  }
+
+
+  private async generationPasswordHash(password: string) {
+    return await bcrypt.hash(password, 10)
   }
 }
