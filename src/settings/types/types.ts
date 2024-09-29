@@ -8,6 +8,7 @@ export interface ISettingCreationAttributes {
   priceTypeThree?: number | null,
   markup?: number | null,
   employeeId?: number | null, // id сотрудника по умолчанию
+  telegramBotId?: string
   telegramKey?: string, // ключ телеграм-бота
 }
 
@@ -21,7 +22,8 @@ export interface ISettings {
   priceTypeThree: number | null,
   markup: number | null,
   employeeId?: number | null,
-  telegramKey?: number | null,
+  telegramBotId?: string | null,
+  telegramKey?: string | null,
   store: {
     id: 1,
     title: 'Основной',

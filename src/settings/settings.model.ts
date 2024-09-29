@@ -36,6 +36,9 @@ export class Settings extends Model<Settings, ISettingCreationAttributes> {
   employeeId: number // id сотрудника по умолчанию
 
   @Column({ type: DataType.STRING })
+  telegramBotId: string
+
+  @Column({ type: DataType.STRING })
   telegramKey: string
 
   @BelongsTo(() => Store)

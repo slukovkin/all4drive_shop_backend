@@ -1,4 +1,4 @@
-export interface StoreDto {
+export interface SettingsDto {
   firmName: string, // название фирмы
   currencyId: number, // id валюты учета
   storeId: number, // id склада по умолчанию
@@ -7,6 +7,6 @@ export interface StoreDto {
   priceTypeThree: number | null,
   markup: number | null,
   employeeId: number | null, // id сотрудника по умолчанию
-  telegramBotName: string,
-  telegramKey: string, // ключ телеграм-бота
+  telegramBotId: string, // id вашего телеграм-бота
+  telegramKey: string, // token телеграм-бота
 }
