@@ -2,6 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize
 import { Order } from '../orders/order.model'
 import { User } from '../users/users.model'
 import { InvoiceCreationDto } from './dto/outgoing-invoice.dto'
+import { IProductSelect } from '../incoming-invoices/dto/invoice.dto'
 
 @Table({ tableName: 'outgoing_invoices' })
 export class OutgoingInvoice extends Model<OutgoingInvoice, InvoiceCreationDto> {
@@ -31,6 +32,9 @@ export class OutgoingInvoice extends Model<OutgoingInvoice, InvoiceCreationDto> 
 
   @Column({ type: DataType.BOOLEAN, defaultValue: false })
   status: boolean
+
+  @Column({ type: DataType.JSON })
+  products: IProductSelect[]
 
   @BelongsTo(() => Order)
   order: Order

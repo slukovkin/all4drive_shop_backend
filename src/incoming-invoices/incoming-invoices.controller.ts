@@ -24,8 +24,8 @@ export class IncomingInvoicesController {
   }
 
   @Get('/:id')
-  @Roles('ADMIN')
-  @UseGuards(RolesGuard)
+  // @Roles('ADMIN')
+  // @UseGuards(RolesGuard)
   getInvoiceById(@Param('id') id: number) {
     return this.invoicesService.getInvoiceById(id)
   }
