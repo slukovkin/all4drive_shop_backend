@@ -17,6 +17,19 @@ export interface IUserProfile {
   lastname: string
 }
 
+export interface IUserResponse {
+  id: number
+  email: string
+  phone: string
+  firstname: string
+  lastname: string
+  roles: {
+    id: number
+    value: string
+    description: string
+  }
+}
+
 export interface IUser {
   id: number
   email: string

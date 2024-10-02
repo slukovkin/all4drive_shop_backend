@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize'
 import { User } from './users.model'
 import { CreateUserDto } from './dto/create-user.dto'
 import { RolesService } from '../roles/roles.service'
-import { IUserProfile } from './types/types'
+import { IUserProfile, IUserResponse } from './types/types'
 import * as bcrypt from 'bcryptjs'
 
 @Injectable()
@@ -28,7 +28,16 @@ export class UsersService {
   }
 
   async getUserById(id: number) {
-    return await this.userRepository.findOne({ where: { id }, include: { all: true } })
+    const candidate = await this.userRepository.findOne({ where: { id }, include: { all: true } })
+    const user: IUserResponse = {
+      id: candidate.id,
+      email: candidate.email,
+      phone: candidate.phone,
+      firstname: candidate.firstname,
+      lastname: candidate.lastname,
+      roles: candidate.roles[0],
+    }
+    return user
   }
 
   async getUserByEmail(email: string) {
