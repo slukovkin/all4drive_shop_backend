@@ -28,11 +28,12 @@ export class AuthService {
   private async generateToken(user: User) {
     const payload = { email: user.email, id: user.id, roles: user.roles }
     const token = this.jwtService.sign(payload, { secret: 'all4drive', expiresIn: '24h' })
-    return {
-      user: user,
-      token: token,
-      // token: `Bearer ${token}`,
-    }
+    return { token: token }
+    // {
+    //   user: user,
+    //   token: token,
+    //   // token: `Bearer ${token}`,
+    // }
   }
 
   private async validatorUser(userDto: CreateUserDto) {
