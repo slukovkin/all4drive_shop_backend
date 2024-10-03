@@ -26,6 +26,11 @@ export class OrdersService {
     return await this.orderRepository.update(order, { where: { id } })
   }
 
+  async updateStatusOrderById(id: number) {
+    const order = await this.orderRepository.findOne({ where: { id } })
+    await this.updateOrderById(id, { ...order, isDone: !order.isDone })
+  }
+
   async deleteOrderById(id: number) {
     return await this.orderRepository.destroy({ where: { id } })
   }

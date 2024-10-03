@@ -37,6 +37,13 @@ export class OrdersController {
     return this.ordersService.updateOrderById(id, order)
   }
 
+  @Get('/status/:id')
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
+  updateStatusOrderById(@Param('id') id: number) {
+    return this.ordersService.updateStatusOrderById(id)
+  }
+
   @Delete('/:id')
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
