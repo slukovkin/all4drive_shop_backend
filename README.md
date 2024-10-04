@@ -1,78 +1,63 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# All4Drive Shop Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+## Описание
+All4Drive — это бэкенд для онлайн-магазина, предлагающего запчасти и аксессуары для автомобилей. Он обеспечивает работу с базой данных, обработку запросов и взаимодействие с фронтендом.
 
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Установка
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/slukovkin/all4drive_shop_backend.git
+   ```
 
-## Description
+2. Перейдите в каталог проекта:
+   ```bash
+   cd all4drive_shop_backend
+   ```
 
-Backend for Ermel frontend
+3. Установите зависимости:
+   ```bash
+   npm install
+   ```
 
-## Installation
+## Запуск
 
-git clone https://github.com/slukovkin/ermel_backend.git
-
-## Running the app
-
+Чтобы запустить проект, выполните команду:
 ```bash
-# development
-
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run start
 ```
 
-```bash
-# production
+### Режимы запуска:
+- **Разработка**: 
+  ```bash
+  npm run start:dev
+  ```
+- **Продакшн**: 
+  ```bash
+  npm run start:prod
+  ```
 
-### Install Docker on your server
+### Использование Docker
+1. Установите Docker на вашем сервере.
+2. Отредактируйте файл `docker-compose.yml`, изменив параметры:
+   ```yaml
+   ports:
+     - '5000:5000'
+   MYSQL_DATABASE: 'your_database_name'
+   MYSQL_USER: 'your_database_user'
+   MYSQL_PASSWORD: 'your_database_password'
+   MYSQL_ROOT_PASSWORD: 'your_root_password'
+   ```
+3. Соберите и запустите контейнеры:
+   ```bash
+   docker-compose build
+   docker-compose up
+   ```
 
-open docker-compose file and change:
-ports:
-- '5000:5000' 
+## Вклад
 
-MYSQL_DATABASE: 'your database name'
-MYSQL_USER: 'user name on database'
-MYSQL_PASSWORD: 'your password on database'
-MYSQL_ROOT_PASSWORD: 'password on database'
+Если вы хотите внести свой вклад, пожалуйста, создайте форк и отправьте пулл-реквест.
 
+## Лицензия
 
-run: docker-compose build
-run: docker-compose up
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If
-you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Lukovkin Sergey](lukovkin8@gmail.com)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Nest — это проект с лицензией MIT.
